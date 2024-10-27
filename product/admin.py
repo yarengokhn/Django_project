@@ -16,9 +16,9 @@ admin.site.register(Category,CategoryAdmin) #category yi görebiliyoruzn admin t
 class ProductAdmin(admin.ModelAdmin):
 
     #fields = ['title','status']
-    list_display =['title','price','amount','status']
+    list_display =['title','price','image_tag','amount','status']
     list_filter = ['status','category']
-    #readonly_fields = ['price']
+    readonly_fields = ['image_tag']
     prepopulated_fields={"slug":("category","title")}
 
 admin.site.register(Product,ProductAdmin)
