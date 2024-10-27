@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+     # olusturulan uygulamalar
     'home.apps.HomeConfig',
-    # olusturulan uygulamalar
+    'product.apps.ProductConfig',
     # yüklenen eklentiler
 ]
 

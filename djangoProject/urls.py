@@ -21,5 +21,6 @@ from home import views as homeviews
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/',include('home.urls')),#home url gelirse home.url e yönlendir
+    path('product/',include('product.urls')),
     path('',homeviews.index,name='index'),
 ]
