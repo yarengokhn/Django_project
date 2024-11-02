@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
 
@@ -56,9 +57,17 @@ class Product(models.Model):
     def image_tag(self):
         return mark_safe('<img src = "{}" width = "50"/>'.format(self.image.url))
 
-    image_tag.short_description = 'Image' 
+    image_tag.short_description = 'Image'
     
     #resim alanını HTML olarak göstermek için kullanılan bir fonksiyondur. image_tag fonksiyonu, bir HTML <img> etiketi oluşturur ve mark_safe() fonksiyonuyla bu HTML'yi "güvenli" hale getirir. Böylece Django, bu HTML kodunu olduğu gibi güvenle görüntüler ve değiştirmez.
+
+    # admin tarafinda ürün düzenlerken ürün resminin görünmesi icin 
+    def image_preview(self):
+        if self.image:
+            return format_html('<img src = "{}"'
+                               'style ="width:300px;height:auto;" />', self.image.url)
+        return '-'
+    image_preview.short_description = 'Current Image '
 
     def __str__(self):
         return self.title
