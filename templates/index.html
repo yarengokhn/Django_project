@@ -1,3 +1,7 @@
 {% extends 'homebase.html' %}
-{% block title %}   icon sayfasi ana sayfa {% endblock %}
+{% block title %}  {{ settings.title}}{% endblock %}
+{% block keywords %}  {{ settings.keywords}}{% endblock %}
+{% block description %}  {{ settings.description}}{% endblock %}
+{% block headBlogu%}   <link href="{{settings.icon.url}}" rel="icon"> {% endblock %}
+
 {% block body %} {% include 'content.html'%} {% endblock %}

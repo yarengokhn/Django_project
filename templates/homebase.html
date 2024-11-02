@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <title>{% block title%}EShopper - Bootstrap Shop Template {% endblock %}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
+    <meta content={% block keywords%}"Free HTML Templates" {% endblock %}name="keywords">
+    <meta content={% block description%}"Free HTML Templates"{% endblock %} name="description">
 
     <!-- Favicon -->
-    <link href="{% static 'img/favicon.ico' %}" rel="icon">
+    {% comment %} <link href="{% static 'img/favicon.ico' %}" rel="icon"> {% endcomment %}
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -24,8 +24,8 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    {% comment %} {% block headBlogu%}   <link href="{{settings.icon.url}}" rel="icon"> {% endblock %} {% endcomment %}
 
-    {% block headBlogu %} {% endblock %}
 </head>
 
 <body>

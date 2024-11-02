@@ -28,7 +28,6 @@ urlpatterns = ([
     path('order/',include('order.urls')),
     path('user/',include('user.urls')),
     path('api/',include('api.urls')),
-
-
     path('',homeviews.index,name='index'),
+    path('contact',homeviews.contact,name = 'contact'),
 ]) + static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
