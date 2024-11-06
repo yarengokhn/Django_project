@@ -48,6 +48,11 @@
                                 <a href="checkout.html" class="dropdown-item">Checkout</a>
                             </div>
                         </div>
+                        
+{#                            <a href="/contact" class="nav-item nav-link">Contact</a>#}
+{#                            <a href="{% url 'contact' %}" class="nav-item nav-link">Referanslar</a>#}
+{#                            <a href="{% url 'contact' %}" class="nav-item nav-link">About Us</a>#}
+                        <a href = ''>
                         <a href="{% url 'contact' %}"class="nav-item nav-link">Contact</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
@@ -56,7 +61,7 @@
                     </div>
                 </div>
             </nav>
-            {%if sayfa == "home"%}
+            {%if sayfa == "home" %}
             {%include 'slider.html'%}
             {%endif%}
         </div>
