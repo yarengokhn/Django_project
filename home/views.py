@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from home.forms import ContactForm
 from home.models import Settings
 
 # Create your views here.
@@ -18,13 +19,13 @@ def index(request):
 
 def contact(request):
     settings = Settings.objects.first()
-    
-
     metin = "BTK Kursiyerleri"
 #   return HttpResponse("Hello,%s. <br> You are at the"% metin)
     #return HttpResponse(metin)
+    form = ContactForm()
     context = {"sayfa": "Contact -Iletisim",
-               'settings': settings}
+               'settings': settings,
+               'form': form}
     return render(request,'contact.html',context)
 
 
