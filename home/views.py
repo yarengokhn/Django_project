@@ -5,7 +5,7 @@ from home.models import Settings
 # Create your views here.
 
 def index(request):
-    settings = Settings.objects.get(pk=1)
+    settings = Settings.objects.first()
 #   birinci = "hepinize"
     metin = "BTK Kursiyerleri"
 #   return HttpResponse("Hello,%s. <br> You are at the"% metin)
@@ -17,7 +17,8 @@ def index(request):
 
 
 def contact(request):
-    settings = Settings.objects.get(pk=1)
+    settings = Settings.objects.first()
+    
 
     metin = "BTK Kursiyerleri"
 #   return HttpResponse("Hello,%s. <br> You are at the"% metin)
@@ -28,7 +29,8 @@ def contact(request):
 
 
 def aboutus(request):
-    settings = Setings.objects.get(pk=1)
+    settings = Settings.objects.first()
+
     metin = "BTK Kursiyerleri"
     context = {"sayfa": "About Us - Hakkımızda",
                'settings': settings}
@@ -36,7 +38,8 @@ def aboutus(request):
 
 
 def references(request):
-    settings = Setings.objects.get(pk=1)
+    settings = Settings.objects.first()
+
     metin = "BTK Kursiyerleri"
     context = {"sayfa": "References - Referanslar",
                'settings': settings}
