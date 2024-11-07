@@ -2,10 +2,12 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
+from mptt.fields import TreeForeignKey
+from mptt.models import MPTTModel
 
 
 # Create your models here.
-class Category(models.Model):
+class Category(MPTTModel):
     STATUS = (
     ('True','Evet'),
     ('False','Hayir'))
@@ -17,18 +19,30 @@ class Category(models.Model):
 
     status =models.CharField(max_length=10,choices=STATUS)
     slug = models.SlugField(null=False,unique=True) #muhakkak doldurulmasi gerektigi icin null False yaptik.
-    parent = models.ForeignKey('self',blank=True,null=True,related_name='children',on_delete=models.CASCADE)
+
+    # parent = models.ForeignKey('self',blank=True,null=True,related_name='children',on_delete=models.CASCADE)
+    parent = TreeForeignKey('self', blank=True, null=True, related_name='children', on_delete=models.CASCADE)
 
     create_at =models.DateTimeField(auto_now_add=True)
     update_at =models.DateTimeField(auto_now=True)
+
+
+    class MPTTMeta:
+        order_insertion_by = ['title']
+
 
     class Meta:
         verbose_name = 'kategori'
         verbose_name_plural = 'Kategoriler'
 
     def __str__(self):
-        return self.title
-    
+        full_path = [self.title]
+        k = self.parent
+        while k is not None:
+            full_path.append(k.title)
+            k = k.parent
+        return '/'.join(full_path)
+        
 
 
 
@@ -59,7 +73,7 @@ class Product(models.Model):
 
     image_tag.short_description = 'Image'
     
-    #resim alanını HTML olarak göstermek için kullanılan bir fonksiyondur. image_tag fonksiyonu, bir HTML <img> etiketi oluşturur ve mark_safe() fonksiyonuyla bu HTML'yi "güvenli" hale getirir. Böylece Django, bu HTML kodunu olduğu gibi güvenle görüntüler ve değiştirmez.
+    #resim alanını HTML olarak göstermek için kullanılan bir fonksiyondur. image_tag fonksiyonu, bir HTML <img> etiketi oluşturur ve mark_safe() fonksiyonuyla bu HTML'yi "güvenli" ha1 getirir. Böylece Django, bu HTML kodunu olduğu gibi güvenle görüntüler ve değiştirmez.
 
     # admin tarafinda ürün düzenlerken ürün resminin görünmesi icin 
     def image_preview(self):
