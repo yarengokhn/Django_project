@@ -23,13 +23,17 @@ from djangoProject import settings
 
 urlpatterns = ([
     path('admin/', admin.site.urls),
+    #uygulama pathleri
     path('home/',include('home.urls')),#home url gelirse home.url e yönlendir
     path('product/',include('product.urls')),
     path('order/',include('order.urls')),
     path('user/',include('user.urls')),
     path('api/',include('api.urls')),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+    #anasayfalar
     path('',homeviews.index,name='index'),
     path('contact',homeviews.contact,name = 'contact'),
-  
+    path('aboutus',homeviews.aboutus,name ='aboutus'),
+    path('references',homeviews.references,name ='references'),
+    #eklenti pathleri
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]) + static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
